@@ -75,11 +75,13 @@ public final class AwsXrayPropagator implements TextMapPropagator {
 
   @Override
   public Collection<String> fields() {
+    System.out.println("### AwsXrayPropagator: called fields()");
     return FIELDS;
   }
 
   @Override
   public <C> void inject(Context context, @Nullable C carrier, Setter<C> setter) {
+    System.out.println("### AwsXrayPropagator: called inject()");
     Objects.requireNonNull(context, "context");
     Objects.requireNonNull(setter, "setter");
 
@@ -118,6 +120,7 @@ public final class AwsXrayPropagator implements TextMapPropagator {
 
   @Override
   public <C> Context extract(Context context, @Nullable C carrier, Getter<C> getter) {
+    System.out.println("### AwsXrayPropagator: called extract()");
     Objects.requireNonNull(getter, "getter");
 
     SpanContext spanContext = getSpanContextFromHeader(carrier, getter);
